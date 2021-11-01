@@ -1,4 +1,4 @@
-function coordinates = Wing_Sections(chord_root, chord_tip, sweep_LE_in, sweep_LE_out, span, y_kink, dihedral)
+function coordinate = coordinates(design_vec)
 
 x_LE_kink = y_kink * tan(sweep_LE_in); 
 y_LE_kink = y_kink;
@@ -10,6 +10,6 @@ x_LE_tip = x_LE_kink + (0.5 * span - y_kink) * tan(sweep_LE_out);
 y_LE_tip = span/2;
 z_LE_tip = 0.5 * span * tan(dihedral);
 
-coordinates = [0               0              0      chord_root    0;
+coordinate = [0               0              0      chord_root    0;
                x_LE_kink    y_LE_kink    z_LE_kink   chord_kink    4;
                x_LE_tip     y_LE_tip     z_LE_tip    chord_tip     -7];
