@@ -3,6 +3,8 @@ clear all
 close all
 clc
 
+%elena
+
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     3.5         0;
