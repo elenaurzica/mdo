@@ -22,5 +22,5 @@ cc_wing = abs(weight_str_wing - x(62));
 c1 = fuel_volume(x) - ERJ145_required_fuel_volume;
 c2 = wing_loading(x)/wing_loading_ref - 1;   
 c = [c1,c2];
-ceq = [cc_cl, cc_cm, cc_CL, cc_CD, cc_fuel, cc_wing];
+ceq = [cc_cl,cc_cm, ];
 end

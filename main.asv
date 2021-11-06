@@ -3,22 +3,8 @@ clear all
 close all
 clc
 
-chord_root =    %1
-chord_tip =     %2
-wingspan =      %3
-twist_kink =    %4
-twist_tip =     %5
-sweep_LE_in =   %6
-sweep_LE_out =  %7
-CST =           %(8 -31) 
-CLdes =         %32 
-CDwing =        %33
-Cl =            %(34 - 47)
-Cm =            %(48-61) 
-weight_wing =   %62 
-weight_fuel =   %63
 
-x0=[ ]; 
+x0=[CLwing ]; %hardcoded ? function?
 
 lb=[0.5,0];
 

@@ -1,4 +1,4 @@
-function coordinate = coordinates(design_vec)
+function coordinate = coordinates(x)
 
 x_LE_kink = y_kink * tan(sweep_LE_in); 
 y_LE_kink = y_kink;
