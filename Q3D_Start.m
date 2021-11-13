@@ -24,7 +24,7 @@ AC.Wing.Airfoils   = [0.2171    0.3450    0.2975    0.2685    0.2893  -0.1299   
 AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
 
 % Viscous vs inviscid
-AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
+AC.Visc  = 0;              % 0 for inviscid and 1 for viscous analysis
 AC.Aero.MaxIterIndex = 150;    %Maximum number of Iteration for the
                                 %convergence of viscous calculation
                                 
@@ -43,6 +43,6 @@ AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the
 tic
 
 Res = Q3D_solver(AC);
-plot(Res.Wing.Yst,Res.Wing.cl,Res.Section.Y, Res.Section.Cl)
+%plot(Res.Wing.Yst,Res.Wing.cl,Res.Section.Y, Res.Section.Cl)
 
 toc
