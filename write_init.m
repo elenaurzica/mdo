@@ -1,26 +1,26 @@
 %%%_____Routine to write the input file for the EMWET procedure________% %%
 
-global constants
+global data
 
-%x = x .* constants.x0;
+%x = x .* data.x0;
 
 x = [4.24  0.98  20.04  4  -7  27  27  0.3156    0.2076    0.2577    0.1669    0.2176   0.1868   -0.1133   -0.0853   -0.2094   -0.0577   -0.1707     -0.1192  0.2712    0.2148    0.1857    0.1861    0.1684   0.1727   -0.0957   -0.0388   -0.2101   -0.0114   -0.1612     -0.0911];
 
 
-x_LE_kink = constants.y_kink * tand(x(6)); 
-y_LE_kink = constants.y_kink;
-z_LE_kink = constants.y_kink * tand(constants.dihedral);
+x_LE_kink = data.y_kink * tand(x(6)); 
+y_LE_kink = data.y_kink;
+z_LE_kink = data.y_kink * tand(data.dihedral);
 
-chord_kink = (x(1) + constants.y_kink * tand(0.1)) - x_LE_kink;
+chord_kink = (x(1) + data.y_kink * tand(0.1)) - x_LE_kink;
 
-x_LE_tip = x_LE_kink + (0.5 * x(3) - constants.y_kink) * tand(x(7)); 
+x_LE_tip = x_LE_kink + (0.5 * x(3) - data.y_kink) * tand(x(7)); 
 y_LE_tip = x(3)/2;
-z_LE_tip = 0.5 * x(3) * tand(constants.dihedral);
+z_LE_tip = 0.5 * x(3) * tand(data.dihedral);
 
 
 namefile    =    char('Fokker50');
-MTOW        =    (x(62) + x(63) + constants.weight_A-W);     %20820;         %[kg]
-MZF         =    constants.weight_A-W + x(62);  % a-w minus w_str_wing         %[kg]
+MTOW        =    (x(62) + x(63) + data.weight_A-W);     %20820;         %[kg]
+MZF         =    data.weight_A-W + x(62);  % a-w minus w_str_wing         %[kg]
 nz_max      =    2.5;   
 span        =    x(3);            %[m]
 root_chord =    x(1);    %x()*x_Ref       %[m]

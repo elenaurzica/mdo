@@ -7,5 +7,7 @@ data.root_kink = 0;
 % data.weight_A-W = 0 ;
 data.MZFW = 0;
 
+data.rearspar = 0.6;
+data.frontspar = 0.15;
 
 data.ctw = 5;
