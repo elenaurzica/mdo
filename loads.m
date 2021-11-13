@@ -18,9 +18,11 @@ AC.Wing.inc  = 0;
             
 % Tavi add CST !!!!!!!!!! you fucking moron             
 % Airfoil coefficients input matrix
-%                    | ->     upper curve coeff.                <-|   | ->       lower curve coeff.       <-| 
-AC.Wing.Airfoils   = [0.2171    0.3450    0.2975    0.2685    0.2893  -0.1299   -0.2388   -0.1635   -0.0476    0.0797;
-                      0.2171    0.3450    0.2975    0.2685    0.2893  -0.1299   -0.2388   -0.1635   -0.0476    0.0797];
+%                    | ->     upper curve coeff.                           <-|   | ->       lower curve coeff.       <-| 
+AC.Wing.Airfoils   = [0.3156    0.2076    0.2577    0.1669    0.2176   0.1868   -0.1133   -0.0853   -0.2094   -0.0577   -0.1707     -0.1192;
+                      0.2712    0.2148    0.1857    0.1861    0.1684   0.1727   -0.0957   -0.0388   -0.2101   -0.0114   -0.1612     -0.0911];
+                  
+                  
                   
 AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
 
@@ -40,7 +42,7 @@ AC.Aero.CL    = (nmax * MTOW)/(0.5 * AC.Aero.V**2 * AC.Aero.rho * wing_surface);
 %% 
 
 loads = Q3D_solver(AC);
-res_loads = [loads.Wing.cl,loads.Wing.cm];
+res_loads = [loads.Wing.ccl,loads.Wing.cm_c4];
 
 
 
