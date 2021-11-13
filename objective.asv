@@ -1,0 +1,11 @@
+function TO = objective(x1,x2)
+ 
+x1 = .weight_str_wing
+
+structures(x)
+performance(x)
+
+TO = structures + performance data.A_LESS_W_Weight
+
+
+

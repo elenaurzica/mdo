@@ -2,8 +2,7 @@ function [f,vararg] = Optim_IDF(x)
       
     global constants;
     
-    %vararg = {res_loads, res_aero, weight_fuel, weight_str_wing};
-    
+    vararg = {res_loads, res_aero, weight_fuel, weight_str_wing};
     constants.res_loads = loads(x);
     constants.res_aero = aerodynamics(x);
     constants.weight_fuel = performance(x);

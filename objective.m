@@ -1,10 +1,7 @@
-function TO = objective(design_vector)
- 
- 
-structures(design)
-performance(design)
+function TO = objective(x1,x2)
+ global constants
 
-TO = structures + performance + constanta
+TO = x1 + x2 + constants.A_LESS_W_Weight
 
 
 
