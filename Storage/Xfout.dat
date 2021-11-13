@@ -6,8 +6,8 @@
  1 1 Reynolds number fixed          Mach number fixed         
   
  xtrf =   1.000 (top)        1.000 (bottom)  
- Mach =   0.182     Re =     4.695 e 6     Ncrit =   9.000
+ Mach =   0.183     Re =     4.698 e 6     Ncrit =   9.000
   
    alpha    CL        CD       CDp       CM     Top_Xtr  Bot_Xtr
   ------ -------- --------- --------- -------- -------- --------
-  -1.613   0.0009   0.00685   0.00113  -0.0136   0.3738   0.0310
+  -3.763  -0.2334   0.00703   0.00176  -0.0175   0.5641   0.0087

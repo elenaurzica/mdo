@@ -1,11 +1,11 @@
-global constants
+global data;
 
-constants.y_kink = 3.66;
-constants.dihedral = 4;
+data.y_kink = 3.66;
+data.dihedral = 4;
 
-constants.root_kink = 0;
-constants.weight_A-W = ;
-constants.MZFW = ;
+data.root_kink = 0;
+% data.weight_A-W = 0 ;
+data.MZFW = 0;
 
 
-constants.ctw = 5;
+data.ctw = 5;
