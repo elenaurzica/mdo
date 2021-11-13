@@ -12,14 +12,24 @@ x = [4.24  0.98  20.04  4  -7  27  27  0.3156    0.2076    0.2577...
        -0.0110  -0.0105  -0.0105  -0.0107  -0.0110  -0.0116...
        -0.0128  -0.0157  -0.0228];
 
-root_upper_CST = [x(8)  x(9)  x(10)  x(11)  x(12) x(13)];
-root_lower_CST = [x(14) x(15) x(16) x(17) x(18) x(19)];
+root_upper_CST = [x(8),  x(9),  x(10),  x(11),  x(12), x(13)];
+root_lower_CST = [x(14), x(15), x(16), x(17), x(18), x(19)];
 
-%root_upper_CST = flip(root_upper_CST);
-%root_lower_CST = flip(root_lower_CST);
+root_upper_CST = root_upper_CST';
+root_lower_CST = root_lower_CST';
 
-X = linspace(0,1,73);
+X = linspace(0,1,99)';
 
-[Xtu, Xtl, ~] = D_airfoil2(root_upper_CST,root_lower_CST,X);
+[Xtu_root, Xtl_root] = D_airfoil2(root_upper_CST,root_lower_CST,X);
+root_airfoil_writer(Xtu_root, Xtl_root);
+
+tip_upper_CST = [x(20)   x(21)   x(22)   x(23)   x(24)   x(25)];
+tip_lower_CST = [x(26)   x(27)   x(28)   x(29)   x(30)   x(31)];
+
+tip_upper_CST = tip_upper_CST';
+tip_lower_CST = tip_lower_CST';
+
+[Xtu_tip, Xtl_tip] = D_airfoil2(tip_upper_CST,tip_lower_CST,X);
+tip_airfoil_writer(Xtu_tip, Xtl_tip);
 
 

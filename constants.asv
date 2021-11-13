@@ -1,6 +1,0 @@
-global constants
-
-constants.y_kink = 3.66;
-constants.dihedral = 4;
-constants.ctw = 5
-constants.weight_A-W = 5 ;
