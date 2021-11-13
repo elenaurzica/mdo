@@ -23,7 +23,7 @@ for point = 1:length(x_l_root)
     fprintf(airfoil_root, format_line, x_l_root(point), y_l_root(point));
 end
 
-fclose('airfoil_root.dat')
-
+fclose('all')
+end
 
     
