@@ -1,30 +1,28 @@
-func 
-
 %% Aerodynamic solver setting
 clear all
 close all
 clc
 
-%elena
-
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
-AC.Wing.Geom = [0     0     0     3.5         0;
-                0.9  14.5   0     1.4         0];
 
+global out
+outputt = out;
+%= [4.24  0.98  20.04  4  -7  27  27  0.3156    0.2076    0.2577    0.1669    0.2176   0.1868   -0.1133   -0.0853   -0.2094   -0.0577   -0.1707     -0.1192  0.2712    0.2148    0.1857    0.1861    0.1684   0.1727   -0.0957   -0.0388   -0.2101   -0.0114   -0.1612     -0.0911];
+AC.Wing.Geom = outputt %coordinates(ref,constants);
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
             
             
 % Airfoil coefficients input matrix
 %                    | ->     upper curve coeff.                <-|   | ->       lower curve coeff.       <-| 
-AC.Wing.Airfoils   = [0.2171    0.3450    0.2975    0.2685    0.2893  -0.1299   -0.2388   -0.1635   -0.0476    0.0797;
-                      0.2171    0.3450    0.2975    0.2685    0.2893  -0.1299   -0.2388   -0.1635   -0.0476    0.0797];
+AC.Wing.Airfoils   = [0.3156    0.2076    0.2577    0.1669    0.2176   0.1868   -0.1133   -0.0853   -0.2094   -0.0577   -0.1707     -0.1192;
+                      0.2712    0.2148    0.1857    0.1861    0.1684   0.1727   -0.0957   -0.0388   -0.2101   -0.0114   -0.1612     -0.0911];
                   
 AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
 
 % Viscous vs inviscid
-AC.Visc  = 0;              % 0 for inviscid and 1 for viscous analysis
+AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 AC.Aero.MaxIterIndex = 150;    %Maximum number of Iteration for the
                                 %convergence of viscous calculation
                                 
