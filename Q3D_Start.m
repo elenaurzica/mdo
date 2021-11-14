@@ -52,30 +52,7 @@ AC.Aero.CL    = (MTOW_ref * 9.8 * 2.6)/(0.5*(AC.Aero.V^2)*2*wing_surface(x)*1.22
 %% 
 tic
 
-Res = Q3D_solver(AC);
-
-L=Res.Wing.ccl.*0.5*AC.Aero.rho*AC.Aero.V.^2; %L=c*Cl*q
-
-
-M=Res.Wing.chord.*MAC(x).*Res.Wing.cm_c4.*0.5*AC.Aero.rho*AC.Aero.V.^2; %M=c*MAC*cm*q;
-
-Y_loc=Res.Wing.Yst./14;
-
-mat=[Y_loc L M];
-
-fid=fopen('our_airfoil.load','wt');
-    fprintf(fid,'%g %g %g\n',0,L(1),M(1)); %Y_loc L M % JE MOET OP ROOT AND TIP LOCATIES EEN LIFT EN MOMENT HEBBEN, ANDERS VERKEERDE WING WEIGHT!!
-    for i=1:length(Y_loc)
-    fprintf(fid,'%g %g %g\n',Y_loc(i),L(i),M(i));  %Y_loc L M
-    end
-    fprintf(fid,'%g %g %g\n',1,L(end),M(end));  %Y_loc L M
-
-fclose(fid); 
-
-EMWET our_airfoil
-
-weightfile = fileread("our_airfoil.weight");
-floats = regexp(weightfile, '[+-]?([0-9]*[.])?[0-9]+', 'match');
-structures  = str2double(floats(1,1));
+loads = Q3D_solver(AC);
+res_loads = [loads.Wing.ccl  loads.Wing.chord.*loads.Wing.cm_c4];
 
 toc
