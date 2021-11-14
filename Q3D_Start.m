@@ -52,7 +52,20 @@ AC.Aero.CL    = MTOW_ref/(0.5*(68^2)*2*wing_surface(x));          % lift coeffic
 %% 
 tic
 
-Res = Q3D_solver(AC);
-%plot(Res.Wing.Yst,Res.Wing.cl,Res.Section.Y, Res.Section.Cl)
+loads = Q3D_solver(AC);
+
+xpos = [loads.Wing.Yst];
+ypos1 = [loads.Wing.ccl];
+ypos2 = [loads.Wing.cm_c4];
+
+x(3) = x(3)/2;
+
+xq = [0, x(3)/13, 2*x(3)/13,  3*x(3)/13, 4*x(3)/13, 5*x(3)/13, 6*x(3)/13, 7*x(3)/13 ...;
+     8*x(3)/13, 9*x(3)/13, 10*x(3)/13, 11*x(3)/13, 12*x(3)/13,  13*x(3)/13];
+ 
+output_ccl = spline(xpos,ypos1,xq);
+output_cm_c4 = spline(xpos,ypos2,xq);
+res_loads = [output_ccl   output_cm_c4  xq];
+
 
 toc
