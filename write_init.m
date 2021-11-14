@@ -1,12 +1,11 @@
 %%%_____Routine to write the input file for the EMWET procedure________% %%
-
+function write_init = write_init(x)
 global data
 
 %x = x .* data.x0;
 
 %x = x .* constants.x0;
 
-x = [4.24  0.98  20.04  4  -7  27  27  0.3156    0.2076    0.2577    0.1669    0.2176   0.1868   -0.1133   -0.0853   -0.2094   -0.0577   -0.1707     -0.1192  0.2712    0.2148    0.1857    0.1861    0.1684   0.1727   -0.0957   -0.0388   -0.2101   -0.0114   -0.1612     -0.0911];
 
 
 x_LE_kink = data.y_kink * tand(x(6)); 
@@ -72,3 +71,4 @@ fprintf(fid, '%g %g %g %g \n',E_al,rho_al,Ft_al,Fc_al);
 fprintf(fid,'%g %g \n',eff_factor,pitch_rib)
 fprintf(fid,'1 \n')
 fclose(fid)
+end
