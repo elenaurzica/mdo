@@ -10,7 +10,7 @@ x_LE_kink = data.y_kink * tand(x(6));
 y_LE_kink = data.y_kink;
 z_LE_kink = data.y_kink * tand(data.dihedral);
 
-chord_kink = (x(1) + data.y_kink * tand(0.1)) - x_LE_kink;
+chord_kink = (x(1) + data.y_kink * tand(1)) - x_LE_kink;
 
 x_LE_tip = x_LE_kink + (0.5 * x(3) - data.y_kink) * tand(x(7)); 
 y_LE_tip = x(3)/2;
@@ -40,32 +40,42 @@ AC.Aero.MaxIterIndex = 150;    %Maximum number of Iteration for the
                                 
                                 
 % Flight Condition
-AC.Aero.V     = 68;            % flight speed (m/s)
+AC.Aero.V     = 150;            % flight speed (m/s)
 AC.Aero.rho   = 1.225;         % air density  (kg/m3)
 AC.Aero.alt   = 0;             % flight altitude (m)
-AC.Aero.Re    = 1.14e7;        % reynolds number (bqased on mean aerodynamic chord)
-AC.Aero.M     = 0.2;           % flight Mach number 
-AC.Aero.CL    = MTOW_ref/(0.5*(68^2)*2*wing_surface(x));          % lift coefficient - comment this line to run the code for given alpha%
+AC.Aero.Re    = (MAC(x)*AC.Aero.V*1.225)/(1.8*10^-5);        % reynolds number (bqased on mean aerodynamic chord)
+AC.Aero.M     = AC.Aero.V/343;           % flight Mach number 
+AC.Aero.CL    = (MTOW_ref * 9.8 * 2.6)/(0.5*(AC.Aero.V^2)*2*wing_surface(x)*1.225);          % lift coefficient - comment this line to run the code for given alpha%
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 
 %% 
 tic
 
-loads = Q3D_solver(AC);
+Res = Q3D_solver(AC);
 
-xpos = [loads.Wing.Yst];
-ypos1 = [loads.Wing.ccl];
-ypos2 = [loads.Wing.cm_c4];
+L=Res.Wing.ccl.*0.5*AC.Aero.rho*AC.Aero.V.^2; %L=c*Cl*q
 
-x(3) = x(3)/2;
 
-xq = [0, x(3)/13, 2*x(3)/13,  3*x(3)/13, 4*x(3)/13, 5*x(3)/13, 6*x(3)/13, 7*x(3)/13 ...;
-     8*x(3)/13, 9*x(3)/13, 10*x(3)/13, 11*x(3)/13, 12*x(3)/13,  13*x(3)/13];
- 
-output_ccl = spline(xpos,ypos1,xq);
-output_cm_c4 = spline(xpos,ypos2,xq);
-res_loads = [output_ccl   output_cm_c4  xq];
+M=Res.Wing.chord.*MAC(x).*Res.Wing.cm_c4.*0.5*AC.Aero.rho*AC.Aero.V.^2; %M=c*MAC*cm*q;
 
+Y_loc=Res.Wing.Yst./14;
+
+mat=[Y_loc L M];
+
+fid=fopen('our_airfoil.load','wt');
+    fprintf(fid,'%g %g %g\n',0,L(1),M(1)); %Y_loc L M % JE MOET OP ROOT AND TIP LOCATIES EEN LIFT EN MOMENT HEBBEN, ANDERS VERKEERDE WING WEIGHT!!
+    for i=1:length(Y_loc)
+    fprintf(fid,'%g %g %g\n',Y_loc(i),L(i),M(i));  %Y_loc L M
+    end
+    fprintf(fid,'%g %g %g\n',1,L(end),M(end));  %Y_loc L M
+
+fclose(fid); 
+
+EMWET our_airfoil
+
+weightfile = fileread("our_airfoil.weight");
+floats = regexp(weightfile, '[+-]?([0-9]*[.])?[0-9]+', 'match');
+structures  = str2double(floats(1,1));
 
 toc

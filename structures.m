@@ -49,7 +49,6 @@ y_LE_tip = x(3)/2;
 z_LE_tip = 0.5 * x(3) * tand(data.dihedral);
 
 write_init(x)
-write_load(x)
 
 EMWET our_airfoil
 
