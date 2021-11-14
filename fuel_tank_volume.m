@@ -56,7 +56,7 @@ thickness_avg_tip = thickness_avg_tip/length(X);
 thickness_avg_root = thickness_avg_root/length(X);
 
 
-V_tank =(0.5*x(3)*0.85)*(x(1)+x(2))*(data.rearspar - data.frontspar)*0.5*(thickness_avg_root + thickness_avg_tip);
+V_tank =(0.5*x(3)*0.85)*(x(1)+x(2))*(data.rearspar - data.frontspar)*0.5*(thickness_avg_root*x(1) + thickness_avg_tip*x(2));
 
 end
 
